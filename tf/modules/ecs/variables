@@ -1,0 +1,53 @@
+variable "env" {
+  description = "The environment name"
+}
+
+variable "vpc_id" {
+  description = "The ID of the VPC."
+}
+
+variable "name" {
+  description = "The name prefix to use for resources."
+}
+
+variable "subnet_ids" {
+  description = "A list of subnets to be include in the ASG"
+  type        = "list"
+}
+
+variable "instance_type" {
+  description = "The instance type to use for the cluster"
+  default     = "t2.medium"
+}
+
+variable "tenancy" {
+  description = "The tenancy of the instances in the ECS cluster"
+  default     = "default"
+}
+
+variable "ssh_key_name" {
+  description = "The name of the key to set as the ssh key "
+}
+
+variable "asg_max_size" {
+  description = "The maximum number of instances allowed for the ASG"
+  default     = "4"
+}
+
+variable "asg_min_size" {
+  description = "The minimum number of instances allowed for the ASG"
+  default     = "2"
+}
+
+variable "asg_desired" {
+  description = "The desired number of instances for the ASG"
+  default     = "2"
+}
+
+variable "logging_redis_endpoint" {
+  description = "The redis endpoint to which logspout should send log entries"
+}
+
+variable "efs_security_group" {
+  description = "The security group id of the shared docker volumes EFS"
+}
