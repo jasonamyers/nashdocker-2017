@@ -16,7 +16,7 @@ resource "aws_kinesis_stream" "s3_event_stream" {
 }
 
 resource "aws_lambda_event_source_mapping" "s3_event_source_mapping" {
-  event_source_arn  = "${aws_kinesis_stream.s3_citrus_event_stream.arn}"
+  event_source_arn  = "${aws_kinesis_stream.s3_event_stream.arn}"
   function_name     = "${var.s3-events-watcher}"
   starting_position = "LATEST"
 }

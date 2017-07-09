@@ -128,14 +128,14 @@ def event_handle(event, context):
 
 def legacy_handle(event, context):
     """Handler for executing the pipeline in ECS."""
-    LOGGER.info('Running pipelines for uvagd to load all data')
+    LOGGER.info('Running pipelines for pipeline to load all data')
 
     task_ids = []
 
     for pipeline in CONFIG['pipelines']:
         response = ECS.run_task(
-            cluster='public_internal',
-            taskDefinition='etl-uvagd',
+            cluster='pipeline_ecs',
+            taskDefinition='etl-pipeline',
             count=1,
             overrides={
                 'containerOverrides': [
@@ -178,7 +178,7 @@ def legacy_handle(event, context):
 
     task_ids = ', '.join(task_ids)
 
-    res = 'Launched the etl-uvagd tasks: {}'.format(task_ids)
+    res = 'Launched the pipeline tasks: {}'.format(task_ids)
     LOGGER.info(res)
     return res
 
